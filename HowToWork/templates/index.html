@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}  
+<div>
+<h1>Inicio</h1>
+{% if user.is_authenticated %}
+  <h1 class="saludo">Hola {{ user }}</h1>
+{% endif %}
+</div>
+<div>
+  <pre class="info_prin"><center>
+          Esta pagina esta diseñada para que los estudiantes puedan tener una mejor administración
+          en sus tareas y actividades diarias de la escuela, pudiendo generar apartados donde puedan 
+          ver sus proyectos a realizar o ya realizados, pudiendo agregar mas proyectos en su perfil.<br>
+          Tambien podran buscar amigos o compañeros de clase, estos se veran reflejados en la seccion 
+          de Amigos.</center>
+  </pre>
+
+</div>
+  <footer class="footer">
+    <p class="margen">
+      Benemerita Universidad Autonoma de Puebla<br>
+      Facultad de Ciencias de la Computacion<br>
+      Jesús Eduardo Hernandez Bravo<br> 
+      Miryam Salazar Vega</p>
+  </footer>
+{% endblock %}

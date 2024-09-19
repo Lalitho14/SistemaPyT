@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ proyecto }}</h1>
+    <div class="container text-center">
+      <p>{{ proyecto.descripcion }}</p>
+      <form action="{%url 'delete_proyecto' proyecto.id%}" method="post">
+        {% csrf_token %}
+        <button type="button" class="btn btn-danger">Eliminar</button>
+      </form>
+    </div>
+    <div class="containter text-center">
+      <div class="row">
+        <div class="col">
+          <h2>Crear Tarea</h2>
+          <form method="post">
+            {% csrf_token %}
+            {{ nuevas_tareas|crispy }}
+            <input type="submit" value="Crear" class="btn btn-warning" />
+          </form>
+        </div>
+        <div class="col">
+          <h2>Tareas</h2>
+          {% for tarea in tareas %}
+            <div class="d-flex justify-content-center">
+              {% if tarea.status == 0 %}
+                <h2>{{ tarea }} - Pediente</h2>
+              {% endif %}
+              {% if tarea.status == 1 %}
+                <h2>{{ tarea }} - Completada</h2>
+              {% endif %}
+              {% if tarea.status == 2 %}
+                <h2>{{ tarea }} - Necesita revision</h2>
+              {% endif %}
+              <p>{{ tarea.descripcion }}</p>
+              <form method="post">
+                {% csrf_token %}
+                {{ form_status.as_p }}
+                <input type="submit" value="Cambiar" class="btn btn-primary" />
+                <input type="hidden" name="id_tarea" value="{{ tarea.id }}" />
+              </form>
+            </div>
+            <br />
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <br />
+    <h1>Agregar colaboradores</h1>
+    <br />
+    <div class="container text-center">
+      {% for amigo in amigos %}
+        <h3>{{ amigo }}</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ soli_form }}
+          <input type="hidden" name="id_usr" value="{{ amigo.id }}" class="fs-2" />
+          <button type="submit" name="crear_instancia" class="btn btn-success">Enviar</button>
+        </form>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

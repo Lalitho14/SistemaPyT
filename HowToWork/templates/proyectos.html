@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <center>
+    <h1>Proyectos</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-flex justify-content-end">
+              <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
+        <div class="col">
+          <h2>Proyectos</h2>
+          <hr>
+          {% for proyecto in proyectos_usr %}
+            <a href="{% url 'vista_proyecto' proyecto.id %}"><h2>{{ proyecto }}</h2></a>
+            <br>
+            <hr>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>Solicitudes a Proyectos</h2>
+    <hr>
+    {% for solicitud in solicitudes %}
+      <form method="post">
+        {% csrf_token %}
+        <h3>{{ solicitud.id_usr1 }} te inivito a participar en el proyecto {{ solicitud.id_proyecto }}</h3>
+        <table>
+          {{ aceptar.as_table }}
+          <button type="submit" name="decision" value="Aceptar" class="btn btn-success">Aceptar</button>
+          <button type="submit" name="decision" value="Rechazar" class="btn btn-danger">Rechazar</button>
+          <input type="hidden" name="id_proyecto" value="{{ solicitud.id_proyecto.id }}" />
+        </table>
+      </form>
+    {% endfor %}
+  </center>
+{% endblock %}

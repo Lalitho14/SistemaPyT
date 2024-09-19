@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>BUSCA A TUS COLABORADORES</h1>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="d-flex justify-content-center">
+            <input type="submit" value="Buscar" name="submit" class="btn btn-primary" />
+          </div>
+        </form>
+        <h3>{{ error }}</h3>
+        {% if resultados %}
+          {% for resultado in resultados %}
+            <h2>{{ resultado.username }}</h2>
+            <div>
+              <form method="post">
+                {% csrf_token %}
+                {{ soli_form|crispy }}
+                <div class="d-flex justify-content-start">
+                  <input type="hidden" name="id_usr2" value="{{ resultado.id }}" class="btn btn-primary" />
+                  <button type="submit" name="crear_instancia" class="btn btn-secondary">Enviar</button>
+                </div>
+              </form>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="col">
+        <h2>Solicitudes Enviadas</h2>
+        {% for env in solicitudes_env %}
+          <h3>{{ env.id_usr2 }}</h3>
+        {% endfor %}
+      </div>
+      <div class="col">
+        <h2>Solicitudes Recibidas</h2>
+        {% for reciv in solicitudes_recv %}
+          <form method="post">
+            {% csrf_token %}
+            {{ aceptar_form|crispy }}
+            <div class="d-flex justify-content-center">
+              <h3>{{ reciv.id_usr1 }}</h3>
+              <input type="hidden" name="id_usr1" value="{{ reciv.id_usr1.id }}" />
+              <button type="submit" name="crear_instancia" class="btn btn-primary">Aceptar</button>
+            </div>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

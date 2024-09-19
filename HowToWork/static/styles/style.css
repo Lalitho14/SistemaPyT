@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&family=Edu+VIC+WA+NT+Beginner:wght@500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: rgb(2, 0, 146);
+    font-family: "Averia Gruesa Libre", system-ui;
+    color: white;
+    padding: 20px;
+}
+
+nav ul {
+    background-color: #93C6FF;
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-size: 20px;
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li {
+    display: inline-flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    width: 150px;
+}
+
+nav li:hover {
+    background-color: rgb(2, 0, 146);
+}
+
+pre {
+    margin-bottom: 3em;
+}
+
+.info_prin {
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-size: 22px;
+}
+
+.saludo {
+    text-align: center;
+    background-color: rgba(252, 143, 0, 0.788);
+    font-family: "Averia Gruesa Libre", system-ui;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+}
+
+input {
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-size: 15px;
+}
+
+h2 {
+    font-family: "Averia Gruesa Libre", system-ui;
+    font-size: 20px;
+}
+
+h3 {
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-size: 18px;
+    color: rgb(185, 22, 22);
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+button {
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-size: 15px;
+}
+
+.footer {
+    text-align: center;
+    background-color: rgba(1, 70, 199, 0.349);
+    font-family: "Averia Gruesa Libre", system-ui;
+    color: white;
+    padding: 17px;
+    display: flex;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.margen {
+    margin-bottom: 0.5em;
+}
+
+fondo {
+    background-image: url(../img/fondo.jpg);
+}
